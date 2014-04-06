@@ -4,19 +4,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	<persistence-unit name="JPAUnit">
-		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider>-->
-		
-      <jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
-		<class>de.clicktt.DBSample</class>
-		<properties>
-		    <property name="hibernate.connection.driver.class" value="org.postgresql.Driver" />
-		    <property name="hibernate.connection.url" value="jdbc:postgresql://${env.OPENSHIFT_POSTGRESQL_DB_HOST}:${env.OPENSHIFT_POSTGRESQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}" />
-		    <property name="hibernate.connection.username" value="adminxii7vfc" />
-		    <property name="hibernate.connection.password" value="DAVmB2LKj82f" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
-		</properties>
-	</persistence-unit>
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+   	<jta-data-source>java:comp/env/jdbc/postgresqldb</jta-data-source>
+	<class>de.clicktt.DBSample</class>
+   	<!-- If you are running in a production environment, add a managed 
+         data source, this example data source is just for development and testing! -->
+      <!-- The datasource is deployed as WEB-INF/spring-quickstart-ds.xml, you
+         can find it in the source at src/main/webapp/WEB-INF/spring-quickstart-ds.xml -->
+      <properties>
+         <!-- Properties for Hibernate -->
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+         <property name="hibernate.show_sql" value="false" />
+      </properties>
 </persistence>
