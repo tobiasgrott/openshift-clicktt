@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
-<%@ page import='java.sql.*' %>
-<%@ page import='javax.sql.*' %>
-<%@ page import='javax.naming.*' %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import='de.clicktt.*' %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,21 +8,11 @@
 </head>
 <body>
 <%
-Connection result = null;
-try {
-    InitialContext ic = new InitialContext();
-    Context initialContext = (Context) ic.lookup("java:comp/env");
-    DataSource datasource = (DataSource) initialContext.lookup("jdbc/PostgreSQLDS");
-    result = datasource.getConnection();
-    Statement stmt = result.createStatement() ;
-    String query = "select * from names;" ;
-    ResultSet rs = stmt.executeQuery(query) ;
-    while (rs.next()) {
-        out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + "<br />");
-    }
-} catch (Exception ex) {
-    out.println("Exception: " + ex + ex.getMessage());
-}
+DBHelper.createTables();
+DBHelper.insertGame(205171,"28.03.2014 19:30",1,86,"TSV Oberriexingen II","KSG Gerlingen V",9,7);
+DBHelper.insertGame(205171,"29.03.2014 18:00",1,81,"SpVgg Hirschlanden-Schöckingen III","TSV Enzweihingen III",6,9);
+DBHelper.insertGame(205171,"29.03.2014 18:00",1,82,"TSV Oberriexingen II","TSV Bietigheim III",9,5);
 %>
+<%= DBHelper.getSpieleliste(205171) %>
 </body>
 </html>
