@@ -8,7 +8,7 @@
 		<class>de.clicktt.DBSample</class>
 		<properties>
 		    <property name="hibernate.connection.driver.class" value="org.postgresql.Driver" />
-		    <property name="hibernate.connection.url" value="postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT" />
+		    <property name="hibernate.connection.url" value="postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT/clicktt" />
 		    <property name="hibernate.connection.username" value="adminxii7vfc" />
 		    <property name="hibernate.connection.password" value="DAVmB2LKj82f" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
