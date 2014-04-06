@@ -56,7 +56,12 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.7.3</version>
 		</dependency>
-
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <scope>provided</scope>
+            <version>1.0.1.Final-redhat-1</version>
+        </dependency>
 	</dependencies>
 	<profiles>
 		<profile>

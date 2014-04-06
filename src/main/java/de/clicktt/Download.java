@@ -4,6 +4,11 @@ package de.clicktt;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
@@ -95,5 +100,42 @@ public class Download {
 			i++;
 		}
 		return o.toString();
+	}
+	EntityManagerFactory emf;
+	public String testJPA(){
+		String retval = "";
+		emf = Persistence.createEntityManagerFactory("JPAUnit");
+		try{
+			DBSample s = new DBSample();
+			s.setMeinText("Hallo Welt");
+			createEntity(s);
+			Object id = s.getId();
+			
+			retval += "\n--- " + readEntity(DBSample.class,id) + " ---\n";
+		}finally{
+			emf.close();
+		}
+		return retval;
+	}
+	public <T> void createEntity(T entity){
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		try{
+			tx.begin();em.persist(entity);
+			tx.commit();
+		}catch(RuntimeException ex){
+			if(tx != null && tx.isActive())tx.rollback();
+			throw ex;
+		}finally{
+			em.close();
+		}
+	}
+	public <T> T readEntity(Class<T> clss, Object id){
+		EntityManager em = emf.createEntityManager();
+		try{
+			return em.find(clss,  id);
+		}finally{
+			em.close();
+		}
 	}
 }
