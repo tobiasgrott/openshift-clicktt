@@ -4,18 +4,19 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	<persistence-unit name="JPAUnit">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-   	<jta-data-source>jdbc/PostgreSQLDS</jta-data-source>
-	<class>de.clicktt.DBSample</class>
-   	<!-- If you are running in a production environment, add a managed 
-         data source, this example data source is just for development and testing! -->
-      <!-- The datasource is deployed as WEB-INF/spring-quickstart-ds.xml, you
-         can find it in the source at src/main/webapp/WEB-INF/spring-quickstart-ds.xml -->
-      <properties>
-         <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-         <property name="hibernate.show_sql" value="false" />
-      </properties>
-      </persistence-unit>
-      
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>jdbc/PostgreSQLDS</non-jta-data-source>
+		<class>de.clicktt.DBSample</class>
+		<!-- If you are running in a production environment, add a managed data 
+			source, this example data source is just for development and testing! -->
+		<!-- The datasource is deployed as WEB-INF/spring-quickstart-ds.xml, you 
+			can find it in the source at src/main/webapp/WEB-INF/spring-quickstart-ds.xml -->
+		<properties>
+			<!-- Properties for Hibernate -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
+	</persistence-unit>
+
 </persistence>
