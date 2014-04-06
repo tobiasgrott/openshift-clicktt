@@ -4,7 +4,6 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	<persistence-unit name="JPAUnit">
-		<jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>de.clicktt.DBSample</class>
 		<properties>
