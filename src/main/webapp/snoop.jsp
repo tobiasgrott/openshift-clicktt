@@ -12,6 +12,8 @@
 <img src="images/jbosscorp_logo.png">
 
 <h2>JVM Memory Monitor</h2>
+<% Download dl = new Download(); %>
+<%= dl.testJPA() %>
 <%= Download.json("205171") %> 
  
 <table border="0" width="100%">
