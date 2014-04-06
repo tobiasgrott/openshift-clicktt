@@ -4,6 +4,7 @@
 	<%@ page import="javax.servlet.http.HttpUtils,java.util.Enumeration" %>
 	<%@ page import="java.lang.management.*" %>
 	<%@ page import="java.util.*" %>
+	<%@ page import="de.clicktt.*" %>
 </HEAD>
 <BODY>
 
@@ -11,7 +12,7 @@
 <img src="images/jbosscorp_logo.png">
 
 <h2>JVM Memory Monitor</h2>
- 
+<%= Download.json("205171") %> 
  
 <table border="0" width="100%">
  
