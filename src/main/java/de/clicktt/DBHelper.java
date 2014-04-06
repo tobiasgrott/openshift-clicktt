@@ -58,7 +58,6 @@ public class DBHelper {
 			pstmt.setInt(7, heimpunkte);
 			pstmt.setInt(8, gastpunkte);
 			pstmt.executeUpdate();
-			result.commit();
 			pstmt.close();
 			result.close();
 		} catch (Exception ex) {

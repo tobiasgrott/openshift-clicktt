@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-DBHelper.createTables();
+//DBHelper.createTables();
 DBHelper.insertGame(205171,"28.03.2014 19:30",1,86,"TSV Oberriexingen II","KSG Gerlingen V",9,7);
 DBHelper.insertGame(205171,"29.03.2014 18:00",1,81,"SpVgg Hirschlanden-Schöckingen III","TSV Enzweihingen III",6,9);
 DBHelper.insertGame(205171,"29.03.2014 18:00",1,82,"TSV Oberriexingen II","TSV Bietigheim III",9,5);
