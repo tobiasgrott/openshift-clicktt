@@ -92,7 +92,7 @@ public class User {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit");;
 		EntityManager em = emf.createEntityManager();
 		try{
-			Query query = em.createQuery("SELECT u from User");
+			Query query = em.createQuery("SELECT u from User u");
 			retval = (List<User>) query.getResultList();
 		}finally{
 			em.close();
