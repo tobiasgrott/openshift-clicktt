@@ -55,7 +55,7 @@ public class Notification {
 	}
 	public static String register(String name, String email, String regId) throws Exception{
 		if(name != null && email != null && regId != null){
-			User u = new User();
+			GCMUser u = new GCMUser();
 			u.setName(name);
 			u.setEmail(email);
 			u.setGcmRegId(regId);

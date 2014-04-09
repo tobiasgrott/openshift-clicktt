@@ -16,7 +16,7 @@ import javax.persistence.Query;
 import javax.persistence.Version;
 
 @Entity
-public class User {
+public class GCMUser {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
@@ -31,7 +31,7 @@ public class User {
 	
 	@Version
 	private Timestamp lastupdate;
-	public User(){}
+	public GCMUser(){}
 	public int getId() {
 		return id;
 	}
@@ -66,34 +66,34 @@ public class User {
 		Download dl = new Download();
 		dl.createEntity(this);
 	}
-	public static User getByMail(String mail){
-		User retval = null;
+	public static GCMUser getByMail(String mail){
+		GCMUser retval = null;
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit");
 		EntityManager em = emf.createEntityManager();
 		try{
 			Query query = em.createQuery("SELECT u from User where u.email=:email");
 			query.setParameter("email", mail);
-			retval = (User) query.getSingleResult();
+			retval = (GCMUser) query.getSingleResult();
 		}finally{
 			em.close();
 		}
 		return retval;
 	}
 	public static boolean isUserExisted(String mail){
-		User u = getByMail(mail);
+		GCMUser u = getByMail(mail);
 		if(u == null){
 			return false;
 		}else{
 			return true;
 		}
 	}
-	public static List<User> getAllUsers(){
-		List<User> retval = new ArrayList<User>();
+	public static List<GCMUser> getAllUsers(){
+		List<GCMUser> retval = new ArrayList<GCMUser>();
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit");;
 		EntityManager em = emf.createEntityManager();
 		try{
 			Query query = em.createQuery("SELECT u from User u");
-			retval = (List<User>) query.getResultList();
+			retval = (List<GCMUser>) query.getResultList();
 		}finally{
 			em.close();
 		}

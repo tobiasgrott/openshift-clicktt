@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="de.clicktt.*,java.util.List"%><%
-   	List<User> users = User.getAllUsers();
-%><!DOCTYPE html>
+    import="de.clicktt.*,java.util.List"%><%List<GCMUser> users = GCMUser.getAllUsers();%><!DOCTYPE html>
 <html>
     <head>
         <title></title>
@@ -54,7 +52,7 @@
         <table  width="910" cellpadding="1" cellspacing="1" style="padding-left:10px;">
          <tr>
            <td align="left">
-              <h1>No of Devices Registered: <%= users.size() %></h1>
+              <h1>No of Devices Registered: <%=users.size()%></h1>
               <hr/>
            </td>
           </tr> 
@@ -66,9 +64,10 @@
                 <tr>
        <%
        	if(users.size() > 0){
-       		int i=1;
-       		for(User u : users){
-       			if(i%3==0){%></tr><tr><td colspan="2"> </td></tr><tr><% }
+              		int i=1;
+              		for(GCMUser u : users){
+              			if(i%3==0){
+       %></tr><tr><td colspan="2"> </td></tr><tr><% }
        			i++;%>
                 <td align="left">
                 <form id="<%= u.getId() %>" name="" method="post"
