@@ -7,7 +7,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<non-jta-data-source>java:/comp/env/jdbc/PostgreSQLDS</non-jta-data-source>
 		<class>de.clicktt.DBSample</class>
-		<class>de.clicktt.User</class>
+		<class>de.clicktt.GCMUser</class>
 		<!-- If you are running in a production environment, add a managed data 
 			source, this example data source is just for development and testing! -->
 		<!-- The datasource is deployed as WEB-INF/spring-quickstart-ds.xml, you 
