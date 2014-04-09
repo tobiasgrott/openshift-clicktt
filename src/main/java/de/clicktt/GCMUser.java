@@ -71,7 +71,7 @@ public class GCMUser {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit");
 		EntityManager em = emf.createEntityManager();
 		try{
-			Query query = em.createQuery("SELECT u from User where u.email=:email");
+			Query query = em.createQuery("SELECT u from GCMUser where u.email=:email");
 			query.setParameter("email", mail);
 			retval = (GCMUser) query.getSingleResult();
 		}finally{
@@ -92,7 +92,7 @@ public class GCMUser {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit");;
 		EntityManager em = emf.createEntityManager();
 		try{
-			Query query = em.createQuery("SELECT u from User u");
+			Query query = em.createQuery("SELECT u from GCMUser u");
 			retval = (List<GCMUser>) query.getResultList();
 		}finally{
 			em.close();
