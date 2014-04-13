@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.naming.Context;
@@ -109,7 +110,12 @@ public class PushService {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-
+	public void delete() throws SQLException{
+		String sql = "DELETE FROM games";
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(sql);
+		stmt.close();
+	}
 	private void init() throws Exception {
 		DatabaseMetaData meta = conn.getMetaData();
 		ResultSet res = meta.getTables(null, null, "spiele",

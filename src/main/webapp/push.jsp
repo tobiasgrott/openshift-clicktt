@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     import="de.clicktt.*"%><%
 PushService p = new PushService();
+    p.delete();
 %> 
 <%= p.push(205171,"C-Klasse") %>
 <% // p.push(204668,"Bezirksklasse") %>
