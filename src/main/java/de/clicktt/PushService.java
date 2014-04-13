@@ -110,12 +110,6 @@ public class PushService {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-	public void delete() throws SQLException{
-		String sql = "DELETE FROM games";
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(sql);
-		stmt.close();
-	}
 	private void init() throws Exception {
 		DatabaseMetaData meta = conn.getMetaData();
 		ResultSet res = meta.getTables(null, null, "spiele",
@@ -126,5 +120,9 @@ public class PushService {
 			stmt.execute(sql);
 			stmt.close();
 		}
+		String sql = "DELETE FROM games";
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(sql);
+		stmt.close();
 	}
 }
