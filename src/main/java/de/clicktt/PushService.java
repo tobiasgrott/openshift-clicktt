@@ -116,10 +116,10 @@ public class PushService {
 			Statement stmt = conn.createStatement();
 			stmt.execute(sql);
 			stmt.close();
-		}
+		}/*
 		String sql = "DELETE FROM games";
 		Statement stmt = conn.createStatement();
 		stmt.executeUpdate(sql);
-		stmt.close();
+		stmt.close();*/
 	}
 }
