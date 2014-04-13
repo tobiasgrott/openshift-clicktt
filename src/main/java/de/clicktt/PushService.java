@@ -24,9 +24,8 @@ import org.jsoup.select.Elements;
 public class PushService {
 	public Connection conn = null;
 
-	public String push(int liga, String name) throws IOException {
+	public String push(int liga, String name) throws Exception {
 		String retval = "";
-		try {
 			InitialContext ic = new InitialContext();
 			Context initialContext = (Context) ic.lookup("java:comp/env");
 			DataSource datasource = (DataSource) initialContext
@@ -61,9 +60,6 @@ public class PushService {
 					break;
 				}
 			}}
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
 		return retval;
 	}
 	
