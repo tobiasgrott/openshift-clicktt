@@ -108,7 +108,7 @@ public class PushService {
 	}
 	private void init() throws Exception {
 		DatabaseMetaData meta = conn.getMetaData();
-		ResultSet res = meta.getTables(null, null, "spiele",
+		ResultSet res = meta.getTables(null, null, "games",
 				new String[] { "TABLE" });
 		if (!res.next()) {
 			String sql = "CREATE TABLE games (liga integer, spielnr integer,heim varchar(200), gast varchar(200), ergebnis varchar(10))";
