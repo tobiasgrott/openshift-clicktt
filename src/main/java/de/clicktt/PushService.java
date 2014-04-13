@@ -1,6 +1,10 @@
 package de.clicktt;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -16,10 +20,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.google.android.gcm.server.Message;
-import com.google.android.gcm.server.Result;
-import com.google.android.gcm.server.Sender;
-
 public class PushService {
 	public Connection conn = null;
 
@@ -32,7 +32,7 @@ public class PushService {
 					.lookup("jdbc/PostgreSQLDS");
 			conn = datasource.getConnection();
 			init();
-		Sender sender = new Sender("AIzaSyB_VVDSBA8klbL2VGzULbKwnPqAUheF27M");
+		
 		System.out.println("Start Reading Games");
 		Document doc = Jsoup
 				.connect(
@@ -53,21 +53,11 @@ public class PushService {
 				System.out.println("Gast: -" + gast + "-");
 				System.out.println("Ergebnis: -" + ergebnis + "-");
 				if (!existsResult(liga, spielnr)) {
-					Message message = new Message.Builder()
-							.addData("Liga", name).addData("Heim", heim)
-							.addData("Gast", gast)
-							.addData("Ergebnis", ergebnis).build();
-					Result result = sender
-							.send(message,
-									"APA91bHQilm6R0fV1RZfx_OXRYEDSpFC9a7iBaFjoUGeWcNLF4agjaf_HvYA7cnRV7YX_k06aVQqb5i1dFe8R0PsYPn3ZVkaVo3NEnGyhWxsWSxYnLH9_mpVGM0GIRzW9aejXUO3KvnN2KkTqH8FdlOpaE5lkEZcug",
-									1);
-					System.out.println(result.toString());
+					
 					retval += "Spielnr: "+spielnr+ " - Heim: "+ heim+ "- Gast: "+gast+" - Ergebnis: "+ergebnis;					
 					insertResult(liga, spielnr, heim, gast, ergebnis);
-					i++;
-					if (i > 5) {
-						break;
-					}
+					retval += pushToDevices("C-Klasse",heim,gast,ergebnis);
+					break;
 				}
 			}}
 		}catch(Exception ex){
@@ -75,7 +65,21 @@ public class PushService {
 		}
 		return retval;
 	}
-
+	
+	private String pushToDevices(String liga,String heim, String gast, String ergebnis) throws Exception{
+		String retval ="\n";
+		URL u = new URL("http://1-dot-clickttpush.appspot.com/tt?Liga="+liga+"&Heim="+heim+"&Gast="+gast+"&Ergebnis="+ergebnis);
+		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+		conn.setDoOutput(true);;
+		conn.connect();
+		BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		String line = null;
+		while((line = rd.readLine()) !=null){
+			retval += line;
+		}
+		return retval;
+	}
+	
 	private boolean existsResult(int liga, int spielnr) throws Exception {
 		String sql = "SELECT COUNT(*) FROM games where liga=? AND spielnr=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);

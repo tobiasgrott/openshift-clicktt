@@ -1,1 +1,0 @@
-mvn install:install-file -Dfile=../../app-root/repo/gcm-server-1.0.2.jar -DgroupId=com.google.android.gcm -DartifactId=gcm-server -Dversion=1.0.2 -Dpackaging=jar
