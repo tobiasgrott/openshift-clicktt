@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -65,7 +66,7 @@ public class PushService {
 	
 	private String pushToDevices(String liga,String heim, String gast, String ergebnis) throws Exception{
 		String retval ="\n";
-		URL u = new URL("http://1-dot-clickttpush.appspot.com/tt?Liga="+liga+"&Heim="+heim+"&Gast="+gast+"&Ergebnis="+ergebnis);
+		URL u = new URL(URLEncoder.encode("http://1-dot-clickttpush.appspot.com/tt?Liga="+liga+"&Heim="+heim+"&Gast="+gast+"&Ergebnis="+ergebnis));
 		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 		conn.setDoOutput(true);;
 		conn.connect();
