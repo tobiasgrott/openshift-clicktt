@@ -66,7 +66,7 @@ public class PushService {
 	
 	private String pushToDevices(String liga,String heim, String gast, String ergebnis) throws Exception{
 		String retval ="\n";
-		URL u = new URL("http://1-dot-clickttpush.appspot.com/tt?Liga="+URLEncoder.encode(liga)+"&Heim="+URLEncoder.encode(heim)+"&Gast="+URLEncoder.encode(gast)+"&Ergebnis="+URLEncoder.encode(ergebnis)));
+		URL u = new URL("http://1-dot-clickttpush.appspot.com/tt?Liga="+URLEncoder.encode(liga)+"&Heim="+URLEncoder.encode(heim)+"&Gast="+URLEncoder.encode(gast)+"&Ergebnis="+URLEncoder.encode(ergebnis));
 		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 		conn.setDoOutput(true);;
 		conn.connect();
