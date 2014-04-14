@@ -61,6 +61,7 @@ public class PushService {
 					break;
 				}
 			}}
+		conn.close();
 		return retval;
 	}
 	
