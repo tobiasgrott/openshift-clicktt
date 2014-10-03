@@ -125,7 +125,7 @@
 							});
 			$.getJSON("json/lineup.jsp?id=" + $("#teamSelect").val(), function(
 					data) {
-				$("#lineups li").remove();
+				$("#lineups").empty();
 				var ul = document.createElement("ul");
 				ul.setAttribute("id", "lineups");
 				ul.setAttribute("data-role", "listview");
@@ -146,7 +146,7 @@
 						$("#lineups").append(lic);
 					}
 				}
-				$('#lineups').listview('refresh');
+				$('#lineups').listview();
 			});
 		}
 		$(document).ready(function() {
