@@ -1,4 +1,5 @@
-<%@page language="java" import java.util.*"%>
+<%@ page import="de.clicktt.*" language="java"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 Cookie cookies[] = request.getCookies();
 Cookie myCookie = null;
@@ -26,7 +27,7 @@ if(auth){
 <body>
 	<div data-role="page" id="main">
 		<div data-role="header">
-			TV M�glingen
+			TV Möglingen
 			<div class="ui-field-contain">
 				<select name="select-native-1" id="teamSelect" onchange="reload()">
 					<option value="226372">1. Herren</option>
@@ -83,7 +84,7 @@ if(auth){
 					data) {
 				var items = [];
 				for (i = 0; i < data.length; i++) {
-					if (data[i].Team.indexOf("TV Möglingen") > -1) {
+					if (data[i].Team.indexOf("TV MÃ¶glingen") > -1) {
 						items.push("<tr class=\"tvm\"><th>" + data[i].Rang
 								+ "</th><td>" + data[i].Team + "</td><td>"
 								+ data[i].Punkte + "</td></tr>");
@@ -108,9 +109,9 @@ if(auth){
 								$("#schedules tbody").remove();
 								for (i = 0; i < data.length; i++) {
 									if (data[i].Heimmannschaft
-											.indexOf("TV Möglingen") > -1
+											.indexOf("TV MÃ¶glingen") > -1
 											|| data[i].Gastmannschaft
-													.indexOf("TV Möglingen") > -1) {
+													.indexOf("TV MÃ¶glingen") > -1) {
 										items.push("<tr class=\"tvm\"><th>"
 												+ data[i].Tag + " "
 												+ data[i].Datum + " "
