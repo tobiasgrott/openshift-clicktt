@@ -73,7 +73,7 @@
 					items.push("<tr><th>"+data[i].Rang+"</th><td>"+data[i].Team + "</td><td>"+data[i].Punkte+"</td></tr>");			
 				}
 			}
-	
+			$("#tabelle tbody").remove();
 			$( "<tbody/>", {
 				"class": "my-new-list",
 				html: items.join( "" )
@@ -82,6 +82,7 @@
 		});
 		$.getJSON( "json/schedule.jsp?id="+$("#teamSelect").val(), function(data){
 			var items = [];
+			$("#schedules tbody").remove();
 			for(i=0;i<data.length;i++){
 				if(data[i].Heimmannschaft.indexOf("TV Möglingen")>-1 ||
 				data[i].Gastmannschaft.indexOf("TV Möglingen")>-1){
@@ -97,6 +98,7 @@
 			$("#schedules").table("refresh");
 		});
 		$.getJSON("json/lineup.jsp?id="+$("#teamSelect").val(), function(data){
+			$("#lineups").remove();
 			var ul = document.createElement("ul");
 			ul.setAttribute("id","lineups");
 			ul.setAttribute("data-role","listview");
