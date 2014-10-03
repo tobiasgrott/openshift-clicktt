@@ -35,7 +35,6 @@ public class Download {
 			if(i == 0){
 				JSONArray jstab = new JSONArray();
 				Elements trs = table.select("tr");
-				int j = 0;
 				for(Element tr : trs){
 					JSONObject tablerow = new JSONObject();
 					if(tr.select("td").size()==10){

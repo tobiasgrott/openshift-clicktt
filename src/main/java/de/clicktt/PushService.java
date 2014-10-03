@@ -1,7 +1,6 @@
 package de.clicktt;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -10,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.naming.Context;
@@ -40,7 +38,6 @@ public class PushService {
 						"http://ttvwh.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage?displayTyp=rueckrunde&displayDetail=meetings&championship=SK+Bez.+LB+13%2F14&group="+liga)
 				.get();
 		Elements el = doc.select("table.result-set tr");
-		int i = 0;
 		for (Element e : el) {
 			if (e.select("td").size() == 10 && e.select("td a").size() == 1) {
 				// System.out.println(e);
@@ -67,7 +64,7 @@ public class PushService {
 	
 	private String pushToDevices(String liga,String heim, String gast, String ergebnis) throws Exception{
 		String retval ="\n";
-		URL u = new URL("http://1-dot-clickttpush.appspot.com/tt?Liga="+URLEncoder.encode(liga)+"&Heim="+URLEncoder.encode(heim)+"&Gast="+URLEncoder.encode(gast)+"&Ergebnis="+URLEncoder.encode(ergebnis));
+		URL u = new URL("http://1-dot-clickttpush.appspot.com/tt?Liga="+URLEncoder.encode(liga,"UTF-8")+"&Heim="+URLEncoder.encode(heim,"UTF-8")+"&Gast="+URLEncoder.encode(gast,"UTF-8")+"&Ergebnis="+URLEncoder.encode(ergebnis,"UTF-8"));
 		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 		conn.setDoOutput(true);;
 		conn.connect();
