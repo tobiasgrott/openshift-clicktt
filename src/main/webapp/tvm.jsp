@@ -193,3 +193,5 @@ if(auth){
 		<p>Not Authorized</p>
 	</body>
 </html>
+<%
+} %>
