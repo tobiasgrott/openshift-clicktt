@@ -7,6 +7,8 @@ import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 
 public class League {
 	private int groupId;
@@ -118,27 +120,57 @@ public class League {
 		lineup.add(tJS);
 		return lineup;
 	}
+	public JSONArray getGyms() throws Exception{
+		JSONArray gyms = new JSONArray();
+		Document doc = Jsoup.parse(new URL("http://ttvwh.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupInfo?contentType=teamContacts&championship=SK+Bez.+LB+14%2F15&group="+this.groupId),20000);
+		for(Element e : doc.select(".text-block-2col div")){
+			JSONObject team = new JSONObject();
+			team.put("Team", e.select("h2").get(0).text().trim());
+			JSONArray hallen = new JSONArray();
+			for(Element li : e.select("li")){
+				if(li.text().trim().contains("Spiellokal") && li.select("address").get(0).childNodeSize()>2){
+					JSONObject gym = new JSONObject();
+					gym.put("Nr", li.childNodes().get(0).toString().trim());
+					gym.put("Name",(((TextNode) li.select("address").get(0).childNodes().get(0))).text().trim());
+
+					String adresse = (((TextNode) li.select("address").get(0).childNodes().get(2))).text().trim();
+					gym.put("Strasse", adresse.split(",")[0].trim());
+					if(adresse.split(",").length>1){
+						gym.put("Ort",adresse.split(",")[1].trim());
+					}
+					hallen.add(gym);
+				}
+			}
+			team.put("Hallen",hallen);
+			gyms.add(team);
+		}
+		return gyms;
+	}
 	public static void main(String[] args) throws Exception{
 		League  l = new League(226372); // Kreisliga
-		System.out.println(l.getTable().toJSONString());
-		System.out.println(l.getSchedule().toJSONString());
-		System.out.println(l.getLineUp().toJSONString());
+//		System.out.println(l.getTable().toJSONString());
+//		System.out.println(l.getSchedule().toJSONString());
+//		System.out.println(l.getLineUp().toJSONString());
+		System.out.println(l.getGyms().toJSONString());
 		l = new League(226391); // B-Klasse
-		System.out.println(l.getTable().toJSONString());
-		System.out.println(l.getSchedule().toJSONString());
-		System.out.println(l.getLineUp().toJSONString());		
+//		System.out.println(l.getTable().toJSONString());
+//		System.out.println(l.getSchedule().toJSONString());
+//		System.out.println(l.getLineUp().toJSONString());
+		System.out.println(l.getGyms().toJSONString());		
 		l = new League(230228); // D-Klasse
-		System.out.println(l.getTable().toJSONString());
-		System.out.println(l.getSchedule().toJSONString());
-		System.out.println(l.getLineUp().toJSONString());		
+//		System.out.println(l.getTable().toJSONString());
+//		System.out.println(l.getSchedule().toJSONString());
+//		System.out.println(l.getLineUp().toJSONString());
+		System.out.println(l.getGyms().toJSONString());
 		l = new League(226469); // Kids 1
-		System.out.println(l.getTable().toJSONString());
-		System.out.println(l.getSchedule().toJSONString());
-		System.out.println(l.getLineUp().toJSONString());
+//		System.out.println(l.getTable().toJSONString());
+//		System.out.println(l.getSchedule().toJSONString());
+//		System.out.println(l.getLineUp().toJSONString());
+		System.out.println(l.getGyms().toJSONString());		
 		l = new League(226381); // Kids 2
-		System.out.println(l.getTable().toJSONString());
-		System.out.println(l.getSchedule().toJSONString());
-		System.out.println(l.getLineUp().toJSONString());
-	
+//		System.out.println(l.getTable().toJSONString());
+//		System.out.println(l.getSchedule().toJSONString());
+//		System.out.println(l.getLineUp().toJSONString());
+		System.out.println(l.getGyms().toJSONString());		
 	}
 }

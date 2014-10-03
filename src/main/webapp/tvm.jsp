@@ -46,6 +46,7 @@ if(auth){
 							data-ajax="false">Tabelle</a></li>
 						<li><a href="#schedule" data-theme="a" data-ajax="false">Spielplan</a></li>
 						<li><a href="#lineup" data-theme="a" data-ajax="false">Aufstellungen</a></li>
+						<li><a href="#gym" data-theme="a" data-ajax="false">Hallen</a></li>
 					</ul>
 				</div>
 				<div id="table" class="ui-content">
@@ -73,6 +74,7 @@ if(auth){
 					</table>
 				</div>
 				<div id="lineup" class="ui-content"></div>
+				<div id="gym" class="ui-content"></div>
 			</div>
 		</div>
 		<div data-role="footer"></div>
@@ -101,8 +103,7 @@ if(auth){
 				}).appendTo("#tabelle");
 				$("#tabelle").table("refresh");
 			});
-			$
-					.getJSON(
+			$.getJSON(
 							"json/schedule.jsp?id=" + $("#teamSelect").val(),
 							function(data) {
 								var items = [];
@@ -163,6 +164,31 @@ if(auth){
 				}
 				$('#lineups').listview();
 				$('#lineups').listview('refresh');
+			});
+			$.getJSON("json/gyms.jsp?id="+ $("#teamSelect").val(), function(){
+				$("#gyms").empty();
+				var ul = document.createElement("ul");
+				ul.setAttribute("id","gyms");
+				ul.setAttribute("data-role", "listview");
+				ul.setAttribute("data-inset", "true");
+				ul.setAttribute("data-divider-theme", "a");
+				$("#gym").append(ul);
+				for(i = 0;i< data.length; i++){
+					var li = document.createElement("li");
+					li.setAttribute("data-role","list-divider");
+					li.appendChild(document.createTextNode(data[i].Team));
+					$("#gyms").append(li);
+					for(j = 0;j<data[i].Hallen.length;j++){
+						var lic = document.createElement("li");
+						lic.appendChild(data[i].Hallen[j].Nr+"<br />"+
+						                data[i].Hallen[j].Name+"<br />"+
+						                data[i].Hallen[j].Strasse+"<br />"+
+						                data[i].Hallen[j].Ort);
+						$("#gyms").append(lic);
+					}
+				}
+				$("#gyms").listview();
+				$("#gyms").listview("refresh");
 			});
 		}
 		$(document).ready(function() {
