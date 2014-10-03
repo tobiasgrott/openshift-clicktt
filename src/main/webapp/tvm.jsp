@@ -110,14 +110,14 @@ if(auth){
 								$("#schedules tbody").remove();
 								for (i = 0; i < data.length; i++) {
 									if (data[i].Heimmannschaft
-											.indexOf("TV MÃ¶glingen") > -1
+											.indexOf("TV Möglingen") > -1
 											|| data[i].Gastmannschaft
-													.indexOf("TV MÃ¶glingen") > -1) {
+													.indexOf("TV Möglingen") > -1) {
 										items.push("<tr class=\"tvm\"><th>"
 												+ data[i].Tag + " "
 												+ data[i].Datum + " "
-												+ data[i].Zeit + "<br />)"
-												+ data[i].Halle + "</td><td>"
+												+ data[i].Zeit + "<br />("
+												+ data[i].Halle + ")</td><td>"
 												+ data[i].Heimmannschaft
 												+ "<br />"
 												+ data[i].Gastmannschaft
@@ -126,7 +126,8 @@ if(auth){
 									} else {
 										items.push("<tr><th>" + data[i].Tag
 												+ " " + data[i].Datum + " "
-												+ data[i].Zeit + "</td><td>"
+												+ data[i].Zeit + "<br />("
+												+ data[i].Halle + ")</td><td>"
 												+ data[i].Heimmannschaft
 												+ "<br />"
 												+ data[i].Gastmannschaft
