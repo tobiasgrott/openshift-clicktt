@@ -165,7 +165,7 @@ if(auth){
 				$('#lineups').listview();
 				$('#lineups').listview('refresh');
 			});
-			$.getJSON("json/gyms.jsp?id="+ $("#teamSelect").val(), function(){
+			$.getJSON("json/gyms.jsp?id="+ $("#teamSelect").val(), function(data){
 				$("#gyms").empty();
 				var ul = document.createElement("ul");
 				ul.setAttribute("id","gyms");
