@@ -96,7 +96,7 @@
 			$("#schedules").table("refresh");
 		});
 		$.getJSON("json/lineup.jsp?id="+$("#teamSelect").val(), function(data){
-			$("#lineups").remove();
+			$("#lineups li").remove();
 			var ul = document.createElement("ul");
 			ul.setAttribute("id","lineups");
 			ul.setAttribute("data-role","listview");
