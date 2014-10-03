@@ -187,12 +187,16 @@ if(auth){
 						lic.appendChild(document.createTextNode(data[i].Hallen[j].Strasse));
 						lic.appendChild(document.createElement("br"));
 						lic.appendChild(document.createTextNode(data[i].Hallen[j].Ort));
+						lic.setAttribute("onclick","geo('"+data[i].Hallen[j].Strasse+", "+data[i].Hallen[j].Ort+"')");
 						$("#gyms").append(lic);
 					}
 				}
 				$("#gyms").listview();
 				$("#gyms").listview("refresh");
 			});
+		}
+		function geo(data){
+			document.location.href = "geo:0,0?q="+data;
 		}
 		$(document).ready(function() {
 			reload();
