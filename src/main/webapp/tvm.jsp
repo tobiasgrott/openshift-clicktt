@@ -3,7 +3,7 @@
 <%
 Cookie cookies[] = request.getCookies();
 Cookie myCookie = null;
-auth = false;
+boolean auth = false;
 if(cookies != null){
 	for(Cookie c : cookies){
 		if(c.getName().equals("TVMHash") && c.getValue().equals("ClickTT")){
