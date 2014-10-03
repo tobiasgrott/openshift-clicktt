@@ -6,7 +6,7 @@ Cookie myCookie = null;
 boolean auth = false;
 if(cookies != null){
 	for(Cookie c : cookies){
-		if(c.getName().equals("TVMHash") && c.getValue().equals("ClickTT")){
+		if(c.getName().equals("TVMHash") && c.getValue().equals("12703f90fa35bb192432b274665a36f5")){
 			auth = true;
 		}
 	}
