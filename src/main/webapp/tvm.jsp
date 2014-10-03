@@ -101,12 +101,91 @@ if(auth){
 	    	var opp2TTR = $("#Opp2TTR").val();
 	    	var result1 = $("#Opp1Result").val();
 	    	var result2 = $("#Opp2Result").val();
-	    	
+	    	var spiele = 0;
+	    	var siege = 0;
+	    	var prob 1 = 
 	    	var probability = 0;
+	    	var t = document.createElement("table");
+	    	var tr = document.createElement("tr");
+	    	var	th = document.createElement("th");
+	    	th.appendChild(document.createTextNode("Spiel"));
+	    	tr.appendChild(th);
+	    	th = document.createElement("th");
+	    	th.appendChild(document.createTextNode("Sieg"));
+	    	tr.appendChild(th);
+	    	th = document.createElement("th");
+	    	th.appendChild(document.createTextNode("Chance"));
+	    	tr.appendChild(th);
+	    	th = document.createElement("th");
+	    	th.appendChild(document.createTextNode("Punkte"));
+	    	tr.appendChild(th);
+	    	t.appendChild(tr);
+			var td;
 	    	if(opp1TTR>0){
-	    		probability = 1.0 / (1.0 + Math.pow(10,((opp1TTR-ownTTR)/150.0)));
-	    		$("#Result").html("Wahrscheinlichkeit Sieg1: "+probability);
+	    		spiele++;
+	    		prob1 = 1.0 / (1.0 + Math.pow(10,((opp1TTR-ownTTR)/150.0)));
+	    		tr = document.createElement("tr");
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode("Spiel 1"));
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		if(result1 == 0){
+	    			td.appendChild(document.createTextNode("Nein"));
+	    		}else{
+	    			td.appendChild(document.createTextNode("Ja"));
+	    			siege++;
+	    		}
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode(Math.round(prob1*100)+" %"));
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode(Math.round((result1-prob1)*16)));
+	    		tr.appendChild(td);
+	    		t.appendChild(tr);
 	    	}
+	    	if(opp2TTR>0){
+	    		spiele++;
+	    		prob2 = 1.0 / (1.0 + Math.pow(10,((opp2TTR-ownTTR)/150.0)));
+	    		tr = document.createElement("tr");
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode("Spiel 2"));
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		if(result2 == 0){
+	    			td.appendChild(document.createTextNode("Nein"));
+	    		}else{
+	    			td.appendChild(document.createTextNode("Ja"));
+	    			siege++;
+	    		}
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode(Math.round(prob2*100)+" %"));
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode(Math.round((result2-prob2)*16)));
+	    		tr.appendChild(td);
+	    		t.appendChild(tr);
+	     	}
+	     	if(spiele == 2){
+	    		var prob = prob1 + prob2;
+	    		tr = document.createElement("tr");
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode("Gesamt"));
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode(siege));
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode(Math.round(prob*100)+" %"));
+	    		tr.appendChild(td);
+	    		td = document.createElement("td");
+	    		td.appendChild(document.createTextNode(Math.round((siege-prob)*16)));
+	    		tr.appendChild(td);
+	    		t.appendChild(tr);
+	     	}
+	    	$("#Result").empty();
+	    	$("#Result").append(t);
 	    }
 		function reload() {
 			console.log($("#teamSelect").val());
