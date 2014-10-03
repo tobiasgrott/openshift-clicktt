@@ -1,3 +1,17 @@
+<%@page language="java" import java.util.*"%>
+<%
+Cookie cookies[] = request.getCookies();
+Cookie myCookie = null;
+auth = false;
+if(cookies != null){
+	for(Cookie c : cookies){
+		if(c.getName().equals("TVMHash") && c.getValue().equals("ClickTT")){
+			auth = true;
+		}
+	}
+}
+if(auth){
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +26,7 @@
 <body>
 	<div data-role="page" id="main">
 		<div data-role="header">
-			TV MÃ¶glingen
+			TV Möglingen
 			<div class="ui-field-contain">
 				<select name="select-native-1" id="teamSelect" onchange="reload()">
 					<option value="226372">1. Herren</option>
@@ -165,4 +179,16 @@
 }
 </style>
 </body>
+</html>
+<%
+}else{
+%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TVM</title>
+	</head>
+	<body>
+		<p>Not Authorized</p>
+	</body>
 </html>
