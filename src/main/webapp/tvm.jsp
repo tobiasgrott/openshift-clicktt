@@ -103,7 +103,9 @@ if(auth){
 	    	var result2 = $("#Opp2Result").val();
 	    	var spiele = 0;
 	    	var siege = 0;
-	    	var prob 1 = 
+	    	var prob1=0;
+	    	var prob2=0;
+	    	var prob = 0;
 	    	var probability = 0;
 	    	var t = document.createElement("table");
 	    	var tr = document.createElement("tr");
