@@ -137,6 +137,8 @@ public class League {
 					gym.put("Strasse", adresse.split(",")[0].trim());
 					if(adresse.split(",").length>1){
 						gym.put("Ort",adresse.split(",")[1].trim());
+					}else{
+						gym.put("Ort", "not available");
 					}
 					hallen.add(gym);
 				}
