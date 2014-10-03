@@ -184,7 +184,7 @@ if(auth){
 						lic.appendChild(document.createElement("br"));
 						lic.appendChild(document.createTextNode(data[i].Hallen[j].Name));
 						lic.appendChild(document.createElement("br"));
-						lic.appendChild(document.createTextNode(data[i].Hallen[j].Strasse);
+						lic.appendChild(document.createTextNode(data[i].Hallen[j].Strasse));
 						lic.appendChild(document.createElement("br"));
 						lic.appendChild(document.createTextNode(data[i].Hallen[j].Ort));
 						$("#gyms").append(lic);
