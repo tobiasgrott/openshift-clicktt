@@ -114,7 +114,12 @@
 					$("#lineups").append(lic);
 				}
 			}
-			$("#lineups").listview("refresh");
+			if ( $('#lineups').hasClass('ui-listview')) {
+    			$('#lineups').listview('refresh');
+     		} 
+			else {
+    			$('#lineups').trigger('create');
+     		}
 		});
 	}
 	$( document ).ready(function() {
