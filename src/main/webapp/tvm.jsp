@@ -47,6 +47,7 @@ if(auth){
 						<li><a href="#schedule" data-theme="a" data-ajax="false">Spielplan</a></li>
 						<li><a href="#lineup" data-theme="a" data-ajax="false">Aufstellungen</a></li>
 						<li><a href="#gym" data-theme="a" data-ajax="false">Hallen</a></li>
+						<li><a href="#ttr" data-theme="a" data-ajax="false">TTR</a>
 					</ul>
 				</div>
 				<div id="table" class="ui-content">
@@ -75,11 +76,38 @@ if(auth){
 				</div>
 				<div id="lineup" class="ui-content"></div>
 				<div id="gym" class="ui-content"></div>
+				<div id="ttr" clasS="ui-content">
+					<label for="OwnTTR">Eigener TTR:</label>
+					<input type="number" id="OwnTTR" /><br />
+					<label for="Opp1TTR">Gegner 1 TTR:</label>
+					<input type="number" id="Opp1TTR" /><br />
+					<label for="Opp1Result">Sieg</label>
+					<select id="Opp1Result" data-role="slider"><option value="1">Sieg</option><option value="0">Niederlage</option></select>
+					<label for="Opp2TTR">Gegner 2 TTR:</label>
+					<input type="number" id="Opp2TTR" /><br />
+					<label for="Opp2Result">Sieg</label>
+					<select id="Opp2Result" data-role="slider"><option value="1">Sieg</option><option value="0">Niederlage</option></select>
+					<button onClick="calculateTTR()">Berechnen</button>
+					<div id="Result"></div>					
+				</div>
 			</div>
 		</div>
 		<div data-role="footer"></div>
 	</div>
 	<script type="text/javascript">
+	    function calculateTTR(){
+	    	var ownTTR = $("#OwnTTR").val();
+	    	var opp1TTR = $("#Opp1TTR").val();
+	    	var opp2TTR = $("#Opp2TTR").val();
+	    	var result1 = $("#Opp1Result").val();
+	    	var result2 = $("#Opp2Result").val();
+	    	
+	    	var probability = 0;
+	    	if(opp1TTR>0){
+	    		probability = 1.0 / (1.0 + Math.pow(10,((opp1TTR-ownTTR)/150.0)));
+	    		$("#Result").html("Wahrscheinlichkeit Sieg1: "+probability);
+	    	}
+	    }
 		function reload() {
 			console.log($("#teamSelect").val());
 			$.getJSON("json/table.jsp?id=" + $("#teamSelect").val(), function(
@@ -116,8 +144,8 @@ if(auth){
 										items.push("<tr class=\"tvm\"><th>"
 												+ data[i].Tag + " "
 												+ data[i].Datum + " "
-												+ data[i].Zeit + "<br />("
-												+ data[i].Halle + ")</td><td>"
+												+ data[i].Zeit + "<br />"
+												+ data[i].Halle + "</td><td>"
 												+ data[i].Heimmannschaft
 												+ "<br />"
 												+ data[i].Gastmannschaft
@@ -126,8 +154,8 @@ if(auth){
 									} else {
 										items.push("<tr><th>" + data[i].Tag
 												+ " " + data[i].Datum + " "
-												+ data[i].Zeit + "<br />("
-												+ data[i].Halle + ")</td><td>"
+												+ data[i].Zeit + "<br />"
+												+ data[i].Halle + "</td><td>"
 												+ data[i].Heimmannschaft
 												+ "<br />"
 												+ data[i].Gastmannschaft
