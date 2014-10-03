@@ -180,10 +180,13 @@ if(auth){
 					$("#gyms").append(li);
 					for(j = 0;j<data[i].Hallen.length;j++){
 						var lic = document.createElement("li");
-						lic.appendChild(document.createElement(data[i].Hallen[j].Nr+"<br />"+
-						                data[i].Hallen[j].Name+"<br />"+
-						                data[i].Hallen[j].Strasse+"<br />"+
-						                data[i].Hallen[j].Ort));
+						lic.appendChild(document.createTextNode(data[i].Hallen[j].Nr));
+						lic.appendChild(document.createElement("br"));
+						lic.appendChild(document.createTextNode(data[i].Hallen[j].Name));
+						lic.appendChild(document.createElement("br"));
+						lic.appendChild(document.createTextNode(data[i].Hallen[j].Strasse);
+						lic.appendChild(document.createElement("br"));
+						lic.appendChild(document.createTextNode(data[i].Hallen[j].Ort));
 						$("#gyms").append(lic);
 					}
 				}
