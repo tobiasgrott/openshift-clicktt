@@ -63,7 +63,7 @@ public class League {
 				}
 					
 				g.put("Tag", tempDay);
-				g.put("Datum", tempDate);
+				g.put("Datum", tempDate.substring(0,6));
 				g.put("Zeit", row.select("td").get(2).text().trim());
 				g.put("Halle", row.select("td").get(3).text().trim());
 				g.put("Nr", Integer.parseInt(row.select("td").get(4).text().trim()));

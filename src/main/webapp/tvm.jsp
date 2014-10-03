@@ -116,7 +116,8 @@ if(auth){
 										items.push("<tr class=\"tvm\"><th>"
 												+ data[i].Tag + " "
 												+ data[i].Datum + " "
-												+ data[i].Zeit + "</td><td>"
+												+ data[i].Zeit + "<br />)"
+												+ data[i].Halle + "</td><td>"
 												+ data[i].Heimmannschaft
 												+ "<br />"
 												+ data[i].Gastmannschaft
