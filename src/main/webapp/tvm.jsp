@@ -312,7 +312,7 @@ if(auth){
 				for (i = 0; i < data.length; i++) {
 					var li = document.createElement("li");
 					li.setAttribute("data-role", "list-divider");
-					li.setAttribute("onclick","window.open('http://ttvwh.click-tt.de"+data[i].Details+"')");
+					li.setAttribute("onclick","window.open('http://ttvwh.click-tt.de"+data[i].LineUp[j].Details+"')");
 					li.appendChild(document.createTextNode(data[i].Team));
 					$("#lineups").append(li);
 					for (j = 0; j < data[i].LineUp.length; j++) {
