@@ -15,104 +15,120 @@ if(auth){
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<title>TVM App</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-<meta charset="utf-8">
-</head>
+	<head>
+		<title>TVM App</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+		<meta charset="utf-8">
+		<script type="text/javascript">
+			// Global Variables
+			var teamId = null;
+		</script>
+	</head>
 <body>
-	<div data-role="page" id="main">
+				<div data-role="panel" id="menu" data-display="push" data-position="left" data-theme="a">
+			<ul data-role="listview" data-inset="false" data-shadow="false">
+				<li data-inset="false"><a href="#Newsfeed">Newsfeed</a></li>
+				<li data-role="collapsible" data-iconpos="right" data-inset="false">
+					<h2>Teams</h2>
+					<ul data-role="listview" data-theme="a">
+						<li><a href="javascript:teamNavigate(226372)">1.Herren</a></li>
+						<li><a href="javascript:teamNavigate(226391)">2.Herren</a></li>
+						<li><a href="javascript:teamNavigate(230228)">3.Herren</a></li>
+						<li><a href="javascript:teamNavigate(226469)">1.Kids</a></li>
+						<li><a href="javascript:teamNavigate(226381)">2.Kids</a></li>
+					</ul>
+				</li>
+				<li data-inset="false"><a href="#TTR">TTR-Rechner</a></li>
+			</ul>
+		</div>
+	<div data-role="page" id="Newsfeed">
 		<div data-role="header">
-			TV Möglingen
-			<div class="ui-field-contain">
-				<select name="select-native-1" id="teamSelect" onchange="reload()">
-					<option value="226372">1. Herren</option>
-					<option value="226391">2. Herren</option>
-					<option value="230228">3. Herren</option>
-					<option value="226469">1. Jungen</option>
-					<option value="226381">2. Jungen</option>
-				</select>
+			TV Möglingen Newsfeed
+		</div>
+	</div>
+	
+	<div data-role="page" id="TTR">
+		<div data-role="header">
+			TV Möglingen TTR Calculator
+		</div>
+		<div data-role="main" class="ui-content">
+			<div id="ttr" clasS="ui-content">
+				<label for="OwnTTR">Eigener TTR:</label>
+				<input type="number" id="OwnTTR" /><br />
+				<label for="Opp1TTR">Gegner 1 TTR:</label>
+				<input type="number" id="Opp1TTR" /><br />
+				<label for="Opp1Result">Sieg</label>
+				<select id="Opp1Result" data-role="slider"><option value="1">Sieg</option><option value="0">Niederlage</option></select>
+				<label for="Opp2TTR">Gegner 2 TTR:</label>
+				<input type="number" id="Opp2TTR" /><br />
+				<label for="Opp2Result">Sieg</label>
+				<select id="Opp2Result" data-role="slider"><option value="1">Sieg</option><option value="0">Niederlage</option></select>
+				<button onClick="calculateTTR()">Berechnen</button>
+				<div id="Result"></div>					
 			</div>
 		</div>
-		<div role="main" class="ui-content">
+	</div>
+	
+	<div data-role="page" id="Team">
+		<div data-role="header">
+			TV Möglingen <span id="pageTitle" />
 			<div data-role="tabs">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#table" class="ui-btn-active" data-theme="a"
+						<li><a onclick="tvmshow('table')" class="ui-btn-active" data-theme="a"
 							data-ajax="false">Tabelle</a></li>
-						<li><a href="#schedule" data-theme="a" data-ajax="false">Spielplan</a></li>
-						<li><a href="#lineup" data-theme="a" data-ajax="false">Aufstellungen</a></li>
-						<li><a href="#gym" data-theme="a" data-ajax="false">Hallen</a></li>
-						<li><a href="#ttr" data-theme="a" data-ajax="false">TTR</a>
+						<li><a onclick="tvmshow('schedule')" data-theme="a" data-ajax="false">Spielplan</a></li>
+						<li><a onclick="tvmshow('lineup')" data-theme="a" data-ajax="false">Aufstellungen</a></li>
+						<li><a onclick="tvmshow('gym')" data-theme="a" data-ajax="false">Hallen</a></li>
 					</ul>
 				</div>
-				<div id="table" class="ui-content">
-					<table data-role="table" id="tabelle" data-mode="columntoggle"
-						class="ui-responsive-table-stroke">
-						<thead>
-							<tr>
-								<th>Rang</th>
-								<th>Team</th>
-								<th>Punkte</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<div id="schedule" class="ui-content">
-					<table data-role="table" id="schedules" data-mode="columntoggle"
-						class="ui-responsive-table-stroke">
-						<thead>
-							<tr>
-								<th>Datum</th>
-								<th>Partie</th>
-								<th>Spiele</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<div id="lineup" class="ui-content"></div>
-				<div id="gym" class="ui-content"></div>
-				<div id="ttr" clasS="ui-content">
-					<label for="OwnTTR">Eigener TTR:</label>
-					<input type="number" id="OwnTTR" /><br />
-					<label for="Opp1TTR">Gegner 1 TTR:</label>
-					<input type="number" id="Opp1TTR" /><br />
-					<label for="Opp1Result">Sieg</label>
-					<select id="Opp1Result" data-role="slider"><option value="1">Sieg</option><option value="0">Niederlage</option></select>
-					<label for="Opp2TTR">Gegner 2 TTR:</label>
-					<input type="number" id="Opp2TTR" /><br />
-					<label for="Opp2Result">Sieg</label>
-					<select id="Opp2Result" data-role="slider"><option value="1">Sieg</option><option value="0">Niederlage</option></select>
-					<button onClick="calculateTTR()">Berechnen</button>
-					<div id="Result"></div>					
-				</div>
 			</div>
-		</div>
-		<div data-role="panel" id="menu" data-display="push" data-position="left" data-theme="a">
-			<ul class="jqm-list ui alt-icon ui-nodisc-icon">
-				<li data-filtertext="TTR"><a href="#ttr">TTR-Rechner</a></li>
-				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-ninset="false" class="u-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
-					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
-						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">Teams<span class="ui-collapsible-heading-status"> click to expand contents</span></a>
-					</h3>
-					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
-						<ul>
-							<li><a href="#team1">1.Herren</a></li>
-							<li><a href="#team2">2.Herren</a></li>
-							<li><a href="#team3">3.Herren</a></li>
-							<li><a href="#team4">1.Kids</a></li>
-							<li><a href="#team5">2.Kids</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
+		<div role="main" class="ui-content">
+			<div id="table" class="ui-content">
+				<table data-role="table" id="tabelle" data-mode="columntoggle"
+					class="ui-responsive-table-stroke">
+					<thead>
+						<tr>
+							<th>Rang</th>
+							<th>Team</th>
+							<th>Punkte</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div id="schedule" class="ui-content">
+				<table data-role="table" id="schedules" data-mode="columntoggle"
+					class="ui-responsive-table-stroke">
+					<thead>
+						<tr>
+							<th>Datum</th>
+							<th>Partie</th>
+							<th>Spiele</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div id="lineup" class="ui-content"></div>
+			<div id="gym" class="ui-content"></div>
 		</div>
 	</div>
 	<script type="text/javascript">
+		function teamNavigate(id){
+			teamId = id;
+			reload();
+			$.mobile.navigate("#Team");
+			tvmshow('table');
+		}
+		function tvmshow(id){
+			$("#gym").hide();
+			$("#table").hide();
+			$("#lineup").hide();
+			$("#schedule").hide();
+			$("#"+id).show();
+		}
 	    function calculateTTR(){
 	    	var ownTTR = $("#OwnTTR").val();
 	    	var opp1TTR = $("#Opp1TTR").val();
@@ -208,12 +224,13 @@ if(auth){
 	    	$("#Result").append(t);
 	    }
 		function reload() {
-			console.log($("#teamSelect").val());
-			$.getJSON("json/table.jsp?id=" + $("#teamSelect").val(), function(
+			console.log(teamId);
+			$.getJSON(
+			"json/table.jsp?id=" + teamId, function(
 					data) {
 				var items = [];
 				for (i = 0; i < data.length; i++) {
-					if (data[i].Team.indexOf("TV MÃ¶glingen") > -1) {
+					if (data[i].Team.indexOf("TV Möglingen") > -1) {
 						items.push("<tr class=\"tvm\"><th>" + data[i].Rang
 								+ "</th><td>" + data[i].Team + "</td><td>"
 								+ data[i].Punkte + "</td></tr>");
@@ -231,7 +248,7 @@ if(auth){
 				$("#tabelle").table("refresh");
 			});
 			$.getJSON(
-							"json/schedule.jsp?id=" + $("#teamSelect").val(),
+							"json/schedule.jsp?id=" + teamId,
 							function(data) {
 								var items = [];
 								$("#schedules tbody").remove();
@@ -268,7 +285,8 @@ if(auth){
 								}).appendTo("#schedules");
 								$("#schedules").table("refresh");
 							});
-			$.getJSON("json/lineup.jsp?id=" + $("#teamSelect").val(), function(
+			$.getJSON(
+			"json/lineup.jsp?id=" + teamId, function(
 					data) {
 				$("#lineups").empty();
 				var ul = document.createElement("ul");
@@ -294,7 +312,7 @@ if(auth){
 				$('#lineups').listview();
 				$('#lineups').listview('refresh');
 			});
-			$.getJSON("json/gyms.jsp?id="+ $("#teamSelect").val(), function(data){
+			$.getJSON("json/gyms.jsp?id="+ teamId, function(data){
 				$("#gyms").empty();
 				var ul = document.createElement("ul");
 				ul.setAttribute("id","gyms");
@@ -329,12 +347,27 @@ if(auth){
 		}
 		$(document).ready(function() {
 			reload();
-		});
-		$(document).on("pagecreate","#main",function(){
-			$(document).on("swipeleft swiperight", "#main", function(e){
+			$("body>[data-role='panel']").panel();
+			$("ul[data-role='listview']").listview();
+			$("li[data-role='collapsible']").collapsible();
+			$(document).on("swipeleft swiperight", "#Newsfeed", function(e){
 				if($(".ui-page-active").jqmData("panel") !== "open"){
-					if(e.type === "swipeleft"){
-						$("menu").panel("open");
+					if(e.type === "swiperight"){
+						$("#menu").panel("open");
+					}
+				}
+			});
+			$(document).on("swipeleft swiperight", "#Team", function(e){
+				if($(".ui-page-active").jqmData("panel") !== "open"){
+					if(e.type === "swiperight"){
+						$("#menu").panel("open");
+					}
+				}
+			});
+			$(document).on("swipeleft swiperight", "#TTR", function(e){
+				if($(".ui-page-active").jqmData("panel") !== "open"){
+					if(e.type === "swiperight"){
+						$("#menu").panel("open");
 					}
 				}
 			});
@@ -348,6 +381,19 @@ if(auth){
 #schedules tbody tr.tvm, #tabelle tbody tr.tvm {
 	background-color: blue;
 	color: white;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading {
+	margin: 0;
+}
+.ui-li-static.ui-collapsible{
+padding:0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+	border-top-width: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content{
+		border-bottom-width: 0;
 }
 </style>
 </body>
