@@ -312,11 +312,11 @@ if(auth){
 				for (i = 0; i < data.length; i++) {
 					var li = document.createElement("li");
 					li.setAttribute("data-role", "list-divider");
-					li.setAttribute("onclick","window.open('http://ttvwh.click-tt.de"+data[i].LineUp[j].Details+"')");
 					li.appendChild(document.createTextNode(data[i].Team));
 					$("#lineups").append(li);
 					for (j = 0; j < data[i].LineUp.length; j++) {
 						var lic = document.createElement("li");
+						lic.setAttribute("onclick","window.open('http://ttvwh.click-tt.de"+data[i].LineUp[j].Details+"')");
 						lic.appendChild(document
 								.createTextNode(data[i].LineUp[j].Rang + " "
 										+ data[i].LineUp[j].Name + " ("
