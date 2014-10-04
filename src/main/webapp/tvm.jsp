@@ -26,25 +26,6 @@ if(auth){
 </head>
 <body>
 	<div data-role="page" id="main">
-		<div data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a">
-			<ul class="jqm-list ui alt-icon ui-nodisc-icon">
-				<li data-filtertext="TTR"><a href="#ttr">TTR-Rechner</a></li>
-				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-ninset="false" class="u-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
-					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
-						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">Teams<span class="ui-collapsible-heading-status"> click to expand contents</span></a>
-					</h3>
-					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
-						<ul>
-							<li><a href="#team1">1.Herren</a></li>
-							<li><a href="#team2">2.Herren</a></li>
-							<li><a href="#team3">3.Herren</a></li>
-							<li><a href="#team4">1.Kids</a></li>
-							<li><a href="#team5">2.Kids</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</div>
 		<div data-role="header">
 			TV Möglingen
 			<div class="ui-field-contain">
@@ -111,7 +92,25 @@ if(auth){
 				</div>
 			</div>
 		</div>
-		<div data-role="footer"></div>
+		<div data-role="panel" id="menu" data-display="push" data-position="left" data-theme="a">
+			<ul class="jqm-list ui alt-icon ui-nodisc-icon">
+				<li data-filtertext="TTR"><a href="#ttr">TTR-Rechner</a></li>
+				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-ninset="false" class="u-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">Teams<span class="ui-collapsible-heading-status"> click to expand contents</span></a>
+					</h3>
+					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+						<ul>
+							<li><a href="#team1">1.Herren</a></li>
+							<li><a href="#team2">2.Herren</a></li>
+							<li><a href="#team3">3.Herren</a></li>
+							<li><a href="#team4">1.Kids</a></li>
+							<li><a href="#team5">2.Kids</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<script type="text/javascript">
 	    function calculateTTR(){
@@ -330,6 +329,15 @@ if(auth){
 		}
 		$(document).ready(function() {
 			reload();
+		});
+		$(document).on("pagecreate","#main",function(){
+			$(document).on("swipeleft swiperight", "#main", function(e){
+				if($(".ui-page-active").jqmData("panel") !== "open"){
+					if(e.type === "swipeleft"){
+						$("menu").panel("open");
+					}
+				}
+			});
 		});
 	</script>
 	<style text="text/css">
