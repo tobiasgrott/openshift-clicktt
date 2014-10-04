@@ -257,18 +257,13 @@ if(auth){
 											.indexOf("TV Möglingen") > -1
 											|| data[i].Gastmannschaft
 													.indexOf("TV Möglingen") > -1) {
-										items.push("<tr class=\"tvm\"><th>"
-												+ data[i].Tag + " "
-												+ data[i].Datum + " "
-												+ data[i].Zeit + "<br />"
-												+ data[i].Halle + "</td><td>"
-												+ data[i].Heimmannschaft
-												+ "<br />"
-												+ data[i].Gastmannschaft
-												+ "</td><td>" + data[i].Spiele
-												+ "</td></tr>");
-									} else {
-										items.push("<tr><th>" + data[i].Tag
+											var str;
+										if(data[i].Details==true){
+											str = "<tr class=\"tvm\" onclick=\"window.open('http://ttvwh.click-tt.de"+data[i].DetailsLink+"')\">";
+										}else{
+											str = "<tr class=\"tvm\">";
+										}
+										str += "<th>" + data[i].Tag
 												+ " " + data[i].Datum + " "
 												+ data[i].Zeit + "<br />"
 												+ data[i].Halle + "</td><td>"
@@ -276,7 +271,26 @@ if(auth){
 												+ "<br />"
 												+ data[i].Gastmannschaft
 												+ "</td><td>" + data[i].Spiele
-												+ "</td></tr>");
+												+ "</td></tr>";
+										items.push(str);
+
+									} else {
+										var str;
+										if(data[i].Details==true){
+											str = "<tr onclick=\"window.open('http://ttvwh.click-tt.de"+data[i].DetailsLink+"')\">";
+										}else{
+											str = "<tr>";
+										}
+										str += "<th>" + data[i].Tag
+												+ " " + data[i].Datum + " "
+												+ data[i].Zeit + "<br />"
+												+ data[i].Halle + "</td><td>"
+												+ data[i].Heimmannschaft
+												+ "<br />"
+												+ data[i].Gastmannschaft
+												+ "</td><td>" + data[i].Spiele
+												+ "</td></tr>";
+										items.push(str);
 									}
 								}
 								$("<tbody/>", {

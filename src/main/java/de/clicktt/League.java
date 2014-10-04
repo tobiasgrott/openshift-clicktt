@@ -72,6 +72,9 @@ public class League {
 				g.put("Spiele",row.select("td").get(7).text().trim());
 				if(row.select("td").get(7).select("a").size()==1){
 					g.put("Details",true);
+					g.put("Detailslink", row.select("td").get(7).select("a").attr("href"));
+				}else{
+					g.put("Details", false);
 				}
 				schedule.add(g);
 			}
@@ -98,6 +101,7 @@ public class League {
 				tPlayer.put("Rang", row.select("td").get(0).text().trim());
 				tPlayer.put("TTR", row.select("td").get(1).text().trim());
 				tPlayer.put("Name", row.select("td").get(2).text().trim());
+				tPlayer.put("Details", row.select("td").get(2).select("a").get(0).attr("href").trim());
 				if(row.select("td").get(4).text().contains("Jugendersatzspieler")){
 					tPlayer.put("JES",true);
 				}else{
@@ -166,9 +170,9 @@ public class League {
 		System.out.println(l.getGyms().toJSONString());
 		l = new League(226469); // Kids 1
 //		System.out.println(l.getTable().toJSONString());
-//		System.out.println(l.getSchedule().toJSONString());
-//		System.out.println(l.getLineUp().toJSONString());
-		System.out.println(l.getGyms().toJSONString());		
+		System.out.println(l.getSchedule().toJSONString());
+		System.out.println(l.getLineUp().toJSONString());
+//		System.out.println(l.getGyms().toJSONString());		
 		l = new League(226381); // Kids 2
 //		System.out.println(l.getTable().toJSONString());
 //		System.out.println(l.getSchedule().toJSONString());
