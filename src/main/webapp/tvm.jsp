@@ -396,8 +396,8 @@ if(auth){
 					}else{
 						str = "<tr>";
 					}
-					str += "<th>" + data[i].Tag
-							+ " " + data[i].Datum + " "
+					str += "<th>" + data.Backlog[i].Tag
+							+ " " + data.Backlog[i].Datum + " "
 							+ data.Backlog[i].Zeit + "<br />"
 							+ data.Backlog[i].Halle + "</td><td>"
 							+ data.Backlog[i].Heimmannschaft
