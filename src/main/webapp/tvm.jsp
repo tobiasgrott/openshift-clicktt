@@ -412,6 +412,7 @@ if(auth){
 					html : items.join("")
 				}).appendTo("#backlogs");
 				$("#backlogs").table("refresh");
+				items = [];
 				for (i = 0; i < data.Preview.length; i++) {
 					var str;
 					str += "<tr><th>" + data.Preview[i].Tag
