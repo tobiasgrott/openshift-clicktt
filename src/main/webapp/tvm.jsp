@@ -384,13 +384,14 @@ if(auth){
 				$("#gyms").listview();
 				$("#gyms").listview("refresh");
 			});
+			}
 			$.getJSON("json/news.jsp",function(data) {
 				var items = [];
 				$("#previews tbody").remove();
 				$("#backlogs tbody").remove();
 				for (i = 0; i < data.Backlog.length; i++) {
 					var str;
-					if(data[i].Details==true){
+					if(data[i].Backlog[i].Details==true){
 						str = "<tr onclick=\"window.open('http://ttvwh.click-tt.de"+data.Backlog[i].Detailslink+"')\">";
 					}else{
 						str = "<tr>";
@@ -431,7 +432,7 @@ if(auth){
 
 			});
 		}
-		}
+		
 		function geo(data){
 			document.location.href = "geo:0,0?q="+data;
 		}
