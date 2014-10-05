@@ -48,6 +48,33 @@ if(auth){
 		<div data-role="header">
 			TV Möglingen Newsfeed
 		</div>
+		<div data-role="main" class="ui-content">
+			<h2>Rückblick</h2>
+			<div id="backlog" class="ui-content">
+				<table data-role="table" id="backlogs" data-mode="columntoggle"
+					class="ui-responsive-table-stroke">
+					<thead>
+						<tr>
+							<th>Datum</th>
+							<th>Partie</th>
+							<th>Spiele</th>
+						</tr>
+					</thead>
+				</table>
+			</div>			
+			<div id="preview" class="ui-content">
+				<table data-role="table" id="previews" data-mode="columntoggle"
+					class="ui-responsive-table-stroke">
+					<thead>
+						<tr>
+							<th>Datum</th>
+							<th>Partie</th>
+							<th>Spiele</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
 	</div>
 	
 	<div data-role="page" id="TTR">
@@ -355,6 +382,52 @@ if(auth){
 				}
 				$("#gyms").listview();
 				$("#gyms").listview("refresh");
+			});
+			$.getJSON("json/news.jsp",function(data) {
+				var items = [];
+				$("#previews tbody").remove();
+				$("#backlogs tbody").remove();
+				for (i = 0; i < data.backlog.length; i++) {
+					var str;
+					if(data[i].Details==true){
+						str = "<tr onclick=\"window.open('http://ttvwh.click-tt.de"+data.backlog[i].Detailslink+"')\">";
+					}else{
+						str = "<tr>";
+					}
+					str += "<th>" + data[i].Tag
+							+ " " + data[i].Datum + " "
+							+ data.backlog[i].Zeit + "<br />"
+							+ data.backlog[i].Halle + "</td><td>"
+							+ data.backlog[i].Heimmannschaft
+							+ "<br />"
+							+ data.backlog[i].Gastmannschaft
+							+ "</td><td>" + data.backlog[i].Spiele
+							+ "</td></tr>";
+					items.push(str);
+				}
+				$("<tbody/>", {
+					"class" : "my-new-list",
+					html : items.join("")
+				}).appendTo("#backlogs");
+				$("#backlogs").table("refresh");
+				for (i = 0; i < data.preview.length; i++) {
+					var str;
+					str += "<tr><th>" + data.preview[i].Tag
+							+ " " + data.preview[i].Datum + " "
+							+ data.preview[i].Zeit + "<br />"
+							+ data.preview[i].Halle + "</td><td>"
+							+ data.preview[i].Heimmannschaft
+							+ "<br />"
+							+ data.preview[i].Gastmannschaft
+							+ "</td><td>&nbsp;</td></tr>";
+					items.push(str);
+				}
+				$("<tbody/>", {
+					"class" : "my-new-list",
+					html : items.join("")
+				}).appendTo("#previews");
+				$("#previews").table("refresh");
+
 			});
 		}
 		function geo(data){
