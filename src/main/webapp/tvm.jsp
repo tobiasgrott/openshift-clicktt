@@ -414,8 +414,7 @@ if(auth){
 				$("#backlogs").table("refresh");
 				items = [];
 				for (i = 0; i < data.Preview.length; i++) {
-					var str;
-					str += "<tr><th>" + data.Preview[i].Tag
+					var str = "<tr><th>" + data.Preview[i].Tag
 							+ " " + data.Preview[i].Datum + " "
 							+ data.Preview[i].Zeit + "<br />"
 							+ data.Preview[i].Halle + "</td><td>"
