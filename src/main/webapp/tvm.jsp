@@ -252,6 +252,7 @@ if(auth){
 	    }
 		function reload() {
 			console.log(teamId);
+			if(teamId!=null){
 			$.getJSON(
 			"json/table.jsp?id=" + teamId, function(
 					data) {
@@ -387,21 +388,21 @@ if(auth){
 				var items = [];
 				$("#previews tbody").remove();
 				$("#backlogs tbody").remove();
-				for (i = 0; i < data.backlog.length; i++) {
+				for (i = 0; i < data.Backlog.length; i++) {
 					var str;
 					if(data[i].Details==true){
-						str = "<tr onclick=\"window.open('http://ttvwh.click-tt.de"+data.backlog[i].Detailslink+"')\">";
+						str = "<tr onclick=\"window.open('http://ttvwh.click-tt.de"+data.Backlog[i].Detailslink+"')\">";
 					}else{
 						str = "<tr>";
 					}
 					str += "<th>" + data[i].Tag
 							+ " " + data[i].Datum + " "
-							+ data.backlog[i].Zeit + "<br />"
-							+ data.backlog[i].Halle + "</td><td>"
-							+ data.backlog[i].Heimmannschaft
+							+ data.Backlog[i].Zeit + "<br />"
+							+ data.Backlog[i].Halle + "</td><td>"
+							+ data.Backlog[i].Heimmannschaft
 							+ "<br />"
-							+ data.backlog[i].Gastmannschaft
-							+ "</td><td>" + data.backlog[i].Spiele
+							+ data.Backlog[i].Gastmannschaft
+							+ "</td><td>" + data.Backlog[i].Spiele
 							+ "</td></tr>";
 					items.push(str);
 				}
@@ -410,15 +411,15 @@ if(auth){
 					html : items.join("")
 				}).appendTo("#backlogs");
 				$("#backlogs").table("refresh");
-				for (i = 0; i < data.preview.length; i++) {
+				for (i = 0; i < data.Preview.length; i++) {
 					var str;
-					str += "<tr><th>" + data.preview[i].Tag
-							+ " " + data.preview[i].Datum + " "
-							+ data.preview[i].Zeit + "<br />"
-							+ data.preview[i].Halle + "</td><td>"
-							+ data.preview[i].Heimmannschaft
+					str += "<tr><th>" + data.Preview[i].Tag
+							+ " " + data.Preview[i].Datum + " "
+							+ data.Preview[i].Zeit + "<br />"
+							+ data.Preview[i].Halle + "</td><td>"
+							+ data.Preview[i].Heimmannschaft
 							+ "<br />"
-							+ data.preview[i].Gastmannschaft
+							+ data.Preview[i].Gastmannschaft
 							+ "</td><td>&nbsp;</td></tr>";
 					items.push(str);
 				}
@@ -429,6 +430,7 @@ if(auth){
 				$("#previews").table("refresh");
 
 			});
+		}
 		}
 		function geo(data){
 			document.location.href = "geo:0,0?q="+data;
