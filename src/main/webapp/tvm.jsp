@@ -391,7 +391,7 @@ if(auth){
 				$("#backlogs tbody").remove();
 				for (i = 0; i < data.Backlog.length; i++) {
 					var str;
-					if(data[i].Backlog[i].Details==true){
+					if(data.Backlog[i].Details==true){
 						str = "<tr onclick=\"window.open('http://ttvwh.click-tt.de"+data.Backlog[i].Detailslink+"')\">";
 					}else{
 						str = "<tr>";
