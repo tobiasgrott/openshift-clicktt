@@ -61,7 +61,8 @@ if(auth){
 						</tr>
 					</thead>
 				</table>
-			</div>			
+			</div>		
+			<h2>Vorschau</h2>	
 			<div id="preview" class="ui-content">
 				<table data-role="table" id="previews" data-mode="columntoggle"
 					class="ui-responsive-table-stroke">
@@ -69,7 +70,6 @@ if(auth){
 						<tr>
 							<th>Datum</th>
 							<th>Partie</th>
-							<th>Spiele</th>
 						</tr>
 					</thead>
 				</table>
@@ -421,7 +421,7 @@ if(auth){
 							+ data.Preview[i].Heimmannschaft
 							+ "<br />"
 							+ data.Preview[i].Gastmannschaft
-							+ "</td><td>&nbsp;</td></tr>";
+							+ "</td></tr>";
 					items.push(str);
 				}
 				$("<tbody/>", {
