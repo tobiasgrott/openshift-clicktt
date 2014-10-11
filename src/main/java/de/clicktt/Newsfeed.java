@@ -43,6 +43,16 @@ public class Newsfeed {
 				}else{
 					g.put("Details", false);
 				}
+				String team = "";
+				if(g.get("Liga").toString().startsWith("H")){
+					// Herren
+					team =  "Herren ";
+				}else if(g.get("Liga").toString().startsWith("J")){
+					// Kids
+					team = "Kids";
+				}
+				g.put("Heimmannschaft",g.get("Heimmannschaft").toString().replace("TV Möglingen", team).trim());
+				g.put("Gastmannschaft",g.get("Gastmannschaft").toString().replace("TV Möglingen", team).trim());	
 				System.out.println(g);
 				backlog.add(g);
 			}
@@ -71,6 +81,16 @@ public class Newsfeed {
 				if(row.select("td").get(8).select("a").size()==1){
 					g.put("Details",true);
 				}
+				String team = "";
+				if(g.get("Liga").toString().startsWith("H")){
+					// Herren
+					team =  "Herren ";
+				}else if(g.get("Liga").toString().startsWith("J")){
+					// Kids
+					team = "Kids";
+				}
+				g.put("Heimmannschaft",g.get("Heimmannschaft").toString().replace("TV Möglingen", team).trim());
+				g.put("Gastmannschaft",g.get("Gastmannschaft").toString().replace("TV Möglingen", team).trim());				
 				preview.add(g);
 			}
 		}
