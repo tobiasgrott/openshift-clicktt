@@ -49,7 +49,7 @@ public class League {
 	}
 	public JSONArray getSchedule() throws Exception{
 		JSONArray schedule = new JSONArray();
-		Document doc = Jsoup.parse(new URL("http://ttvwh.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage?displayTyp=vorrunde&displayDetail=meetings&championship=SK+Bez.+LB+14%2F15&group="+this.groupId),20000);
+		Document doc = Jsoup.parse(new URL("http://ttvwh.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage?displayTyp=rueckrunde&displayDetail=meetings&championship=SK+Bez.+LB+14%2F15&group="+this.groupId),20000);
 		String tempDay = "";
 		String tempDate = "";
 		for(Element row : doc.select("table.result-set tr")){
@@ -83,7 +83,7 @@ public class League {
 	}
 	public JSONArray getLineUp() throws Exception{
 		JSONArray lineup  = new JSONArray();
-		Document doc = Jsoup.parse(new URL("http://ttvwh.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPools?displayTyp=vorrunde&championship=SK+Bez.+LB+14%2F15&group="+this.groupId),20000);
+		Document doc = Jsoup.parse(new URL("http://ttvwh.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPools?displayTyp=rueckrunde&championship=SK+Bez.+LB+14%2F15&group="+this.groupId),20000);
 		String tempTeam = "";
 		JSONObject tJS = null;
 		JSONArray tLineup = null;
