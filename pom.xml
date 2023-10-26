@@ -6,6 +6,7 @@
 	<packaging>war</packaging>
 	<version>1.0</version>
 	<name>clicktt</name>
+	
 	<repositories>
 		<repository>
 			<id>eap</id>
@@ -32,44 +33,51 @@
 	</pluginRepositories>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<postgresql.version>42.6.0</postgresql.version>
+		<mysql.connector.version>8.0.33</mysql.connector.version>
+		<json.simple.version>1.1.1</json.simple.version>
+		<jsoup.version>1.16.2</jsoup.version>
+		<jpa.api.version>1.0.1.Final</jpa.api.version>
+		<hibernate.version>6.4.0.CR1</hibernate.version>
+		<javax.servlet.api.version>6.0.0</javax.servlet.api.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.4.3</version>
+			<version>${postgresql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.28</version>
+			<version>${mysql.connector.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
+			<version>${json.simple.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.15.3</version>
+			<version>${jsoup.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+			<version>${jpa.api.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.0.1.Final</version>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.3</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>${javax.servlet.api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
