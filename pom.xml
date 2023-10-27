@@ -10,7 +10,7 @@
 	<repositories>
 		<repository>
 			<id>eap</id>
-			<url>http://maven.repository.redhat.com/techpreview/all</url>
+			<url>https://maven.repository.redhat.com/techpreview/all</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -22,7 +22,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>eap</id>
-			<url>http://maven.repository.redhat.com/techpreview/all</url>
+			<url>https://maven.repository.redhat.com/techpreview/all</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -89,7 +89,7 @@
 				will need. -->
 			<!-- By default that is to put the resulting archive into the 'webapps' 
 				folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+			<!-- https://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
 				<finalName>clicktt</finalName>
