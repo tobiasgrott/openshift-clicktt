@@ -42,6 +42,7 @@
 		<jpa.api.version>1.0.1.Final</jpa.api.version>
 		<hibernate.version>6.4.0.CR1</hibernate.version>
 		<javax.servlet.api.version>6.0.0</javax.servlet.api.version>
+		<maven.war.plugin.version>3.4.0</maven.war.plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -96,7 +97,7 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-war-plugin</artifactId>
-						<version>2.1.1</version>
+						<version>${maven.war.plugin.version}</version>
 						<configuration>
 							<outputDirectory>webapps</outputDirectory>
 							<warName>ROOT</warName>
