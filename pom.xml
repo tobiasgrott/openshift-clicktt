@@ -65,9 +65,6 @@
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
 				<version>${owasp.dependency.plugin}</version>
-				<configuration>
-					<nvdApiKey>43395682-ab2e-46a4-b04f-62ba133024db</nvdApiKey>
-				</configuration>
 				<executions>
 					<execution>
 						<goals>
