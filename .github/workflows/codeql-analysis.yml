@@ -46,6 +46,12 @@ jobs:
         distribution: 'temurin'
         java-version: 21
     
+    - name: Setup Maven Action
+      uses: s4u/setup-maven-action@< version >
+      with:          
+        java-version: 21
+        maven-version: 3.9.6
+   
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
