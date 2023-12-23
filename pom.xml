@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>clicktt</groupId>
@@ -10,14 +11,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
-		<postgresql.version>42.6.0</postgresql.version>
+		<postgresql.version>42.7.0</postgresql.version>
 		<mysql.connector.version>8.2.0</mysql.connector.version>
 		<json.simple.version>1.1.1</json.simple.version>
-		<jsoup.version>1.16.2</jsoup.version>
+		<jsoup.version>1.17.1</jsoup.version>
 		<jpa.api.version>1.0.1.Final</jpa.api.version>
-		<hibernate.version>6.4.0.CR1</hibernate.version>
+		<hibernate.version>6.4.0.Final</hibernate.version>
 		<javax.servlet.api.version>6.0.0</javax.servlet.api.version>
 		<maven.war.plugin.version>3.4.0</maven.war.plugin.version>
+		<owasp.dependency.plugin>9.0.2</owasp.dependency.plugin>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,15 +59,39 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>${owasp.dependency.plugin}</version>
+				<configuration>
+					<nvdApiKey>43395682-ab2e-46a4-b04f-62ba133024db</nvdApiKey>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
+	</build>
 	<profiles>
 		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when 
+			<!-- When built in OpenShift the 'openshift' profile will be used
+			when 
 				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app 
+			<!-- Use this profile for any OpenShift specific customization your
+			app 
 				will need. -->
-			<!-- By default that is to put the resulting archive into the 'webapps' 
+			<!-- By default that is to put the resulting archive into the
+			'webapps' 
 				folder. -->
-			<!-- https://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+			<!--
+			https://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
 				<finalName>clicktt</finalName>
@@ -79,8 +105,10 @@
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>
+
 				</plugins>
 			</build>
 		</profile>
 	</profiles>
 </project>
+
